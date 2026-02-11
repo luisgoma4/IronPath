@@ -61,7 +61,7 @@ const Profile: React.FC<ProfileProps> = ({ user, setUser }) => {
         </div>
 
         <div className="p-8 space-y-8">
-          <h3 className="text-lg font-black text-slate-800">Training Intelligence Settings</h3>
+          <h3 className="text-lg font-black text-slate-800">Training Logic Settings</h3>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
@@ -89,10 +89,10 @@ const Profile: React.FC<ProfileProps> = ({ user, setUser }) => {
           <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
             <div className="flex gap-4 items-start">
               <div className="bg-indigo-600 w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0 mt-1">
-                <i className="fas fa-robot text-xs"></i>
+                <i className="fas fa-brain text-xs"></i>
               </div>
               <p className="text-sm text-slate-600 leading-relaxed">
-                The AI uses your <strong>Progression Increment</strong> and <strong>Plate Minimum</strong> to calculate exactly how much weight you should add to each exercise based on your previous performance and RPE scores.
+                The <strong>Smart Progression System</strong> uses your weight increments and plate minimums to calculate optimal load increases based on your previous sets and RPE feedback.
               </p>
             </div>
           </div>
@@ -100,6 +100,9 @@ const Profile: React.FC<ProfileProps> = ({ user, setUser }) => {
       </div>
     </div>
   );
+};
+
+export default Profile;
 };
 
 export default Profile;
