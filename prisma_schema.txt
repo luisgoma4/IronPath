@@ -1,0 +1,77 @@
+
+// This is for architectural reference as requested
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String
+  weight        Float
+  height        Int
+  trainingGoal  String
+  settings      Json      // Store progression config
+  routines      Routine[]
+  workouts      Workout[]
+  createdAt     DateTime  @default(now())
+}
+
+model Routine {
+  id            String     @id @default(cuid())
+  userId        String
+  user          User       @relation(fields: [userId], references: [id])
+  name          String
+  description   String?
+  assignedDays  Int[]      // 0-6
+  exercises     Exercise[]
+  workouts      Workout[]
+}
+
+model Exercise {
+  id               String   @id @default(cuid())
+  routineId        String
+  routine          Routine  @relation(fields: [routineId], references: [id])
+  name             String
+  targetSets       Int
+  targetReps       String
+  restTime         Int
+  progressionModel String
+}
+
+model Workout {
+  id            String            @id @default(cuid())
+  userId        String
+  user          User              @relation(fields: [userId], references: [id])
+  routineId     String
+  routine       Routine           @relation(fields: [routineId], references: [id])
+  date          DateTime          @default(now())
+  duration      Int
+  exercises     WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id           String       @id @default(cuid())
+  workoutId    String
+  workout      Workout      @relation(fields: [workoutId], references: [id])
+  exerciseName String
+  exerciseId   String
+  sets         SetRecord[]
+}
+
+model SetRecord {
+  id                String          @id @default(cuid())
+  workoutExerciseId String
+  workoutExercise   WorkoutExercise @relation(fields: [workoutExerciseId], references: [id])
+  weight            Float
+  reps              Int
+  rpe               Int
+  isWarmup          Boolean         @default(false)
+}
