@@ -38,12 +38,12 @@ const Dashboard: React.FC<DashboardProps> = ({ user, workouts, routines }) => {
     <div className="space-y-8 animate-fadeIn max-w-7xl mx-auto">
       <header className="flex justify-between items-center">
         <div>
-          <h1 className="text-4xl font-black text-slate-900 tracking-tight">Dashboard</h1>
-          <p className="text-slate-500 font-medium">Hello {user.name}, you're crushing your targets.</p>
+          <h1 className="text-4xl font-black text-slate-900 tracking-tight">Performance</h1>
+          <p className="text-slate-500 font-medium">Monitoring your mechanical tension and progression.</p>
         </div>
       </header>
 
-      {/* AI Prediction Section */}
+      {/* Smart Prediction Section */}
       <PredictionWindow user={user} routines={routines} workouts={workouts} />
 
       {/* KPI Grid */}
@@ -116,52 +116,6 @@ const Dashboard: React.FC<DashboardProps> = ({ user, workouts, routines }) => {
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
-        <div className="p-8 border-b border-slate-100 flex justify-between items-center bg-slate-50/30">
-          <h2 className="text-xl font-black text-slate-800 tracking-tight">Recent Sessions</h2>
-          <button className="text-indigo-600 text-xs font-black uppercase tracking-widest hover:underline">Full History</button>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead className="bg-slate-50/50 text-slate-400 text-[10px] font-black uppercase tracking-widest">
-              <tr>
-                <th className="px-8 py-4">Routine</th>
-                <th className="px-8 py-4">Completed On</th>
-                <th className="px-8 py-4">Volume Output</th>
-                <th className="px-8 py-4">Duration</th>
-                <th className="px-8 py-4"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {workouts.slice(0, 5).map(w => (
-                <tr key={w.id} className="hover:bg-slate-50/50 transition-colors cursor-pointer group">
-                  <td className="px-8 py-5">
-                    <div className="font-black text-slate-800 text-sm tracking-tight">{w.routineName}</div>
-                  </td>
-                  <td className="px-8 py-5 text-slate-500 font-medium text-xs">{new Date(w.date).toLocaleDateString()}</td>
-                  <td className="px-8 py-5">
-                    <span className="font-mono font-black text-indigo-600 text-xs">{w.exercises.reduce((acc, ex) => acc + calculateVolume(ex.sets), 0).toLocaleString()} kg</span>
-                  </td>
-                  <td className="px-8 py-5">
-                    <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] font-bold">{w.duration} MIN</span>
-                  </td>
-                  <td className="px-8 py-5 text-right">
-                    <i className="fas fa-chevron-right text-slate-200 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all"></i>
-                  </td>
-                </tr>
-              ))}
-              {workouts.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="px-8 py-20 text-center text-slate-400 font-medium">
-                    No session data available. Start your first workout to see analytics.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>

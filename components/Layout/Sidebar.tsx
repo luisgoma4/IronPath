@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
         <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
           <i className="fas fa-dumbbell text-xl"></i>
         </div>
-        <span className="text-xl font-bold tracking-tight hidden md:block">IronPath AI</span>
+        <span className="text-xl font-bold tracking-tight hidden md:block">IronPath</span>
       </div>
 
       <div className="flex-1 flex flex-row md:flex-col justify-around md:justify-start overflow-x-auto md:overflow-x-visible">
